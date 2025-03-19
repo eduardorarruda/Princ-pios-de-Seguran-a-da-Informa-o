@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Segurança da Informação</title>
+    <style></style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="titulo">Princípios de Segurança da Informação</h1>
+      <div class="toggle-buttons">
+        <button onclick="showContent('completo')">Modo Completo</button>
+        <button onclick="showContent('mapa')">Ver Mapa Mental</button>
+      </div>
+
+      <div id="completo" class="content">
+        <h2>Introdução</h2>
+        <p>
+          A segurança da informação é essencial para proteger dados sensíveis de
+          acessos não autorizados, corrupção ou indisponibilidade. Para garantir
+          essa segurança, cinco princípios fundamentais devem ser seguidos:
+          Confidencialidade, Integridade, Disponibilidade, Autenticação e Não
+          Repúdio.
+        </p>
+        <h2>Os Cinco Princípios Fundamentais</h2>
+        <h3>1. Confidencialidade</h3>
+        <p>
+          <strong>Definição:</strong> Garante que apenas pessoas autorizadas
+          tenham acesso às informações.
+        </p>
+        <p>
+          <strong>Exemplo prático:</strong> Um banco protege os dados dos
+          clientes com criptografia, impedindo que hackers acessem informações
+          financeiras.
+        </p>
+        <p><strong>Métodos comuns:</strong></p>
+        <ul>
+          <li>Controle de acesso</li>
+          <li>Criptografia</li>
+          <li>Uso de senhas seguras</li>
+        </ul>
+        <h3>2. Integridade</h3>
+        <p>
+          <strong>Definição:</strong> Assegura que os dados permaneçam precisos
+          e não sejam alterados indevidamente.
+        </p>
+        <p>
+          <strong>Exemplo prático:</strong> Um sistema de registros médicos usa
+          assinaturas digitais para garantir que um prontuário não seja
+          modificado sem autorização.
+        </p>
+        <p><strong>Métodos comuns:</strong></p>
+        <ul>
+          <li>Hashing</li>
+          <li>Assinaturas digitais</li>
+          <li>Backups regulares</li>
+        </ul>
+        <h3>3. Disponibilidade</h3>
+        <p>
+          <strong>Definição:</strong> Garante que as informações estejam
+          acessíveis quando necessárias.
+        </p>
+        <p>
+          <strong>Exemplo prático:</strong> Um site de e-commerce investe em
+          servidores redundantes para evitar quedas e garantir que os clientes
+          sempre possam acessar a loja online.
+        </p>
+        <p><strong>Métodos comuns:</strong></p>
+        <ul>
+          <li>Backups em nuvem</li>
+          <li>Proteção contra ataques DDoS</li>
+          <li>Manutenção preventiva dos sistemas</li>
+        </ul>
+        <h3>4. Autenticação</h3>
+        <p>
+          <strong>Definição:</strong> Confirma a identidade de usuários e
+          sistemas antes de conceder acesso.
+        </p>
+        <p>
+          <strong>Exemplo prático:</strong> Um funcionário precisa passar por um
+          sistema de autenticação de dois fatores (senha e código SMS) antes de
+          acessar dados corporativos.
+        </p>
+        <p><strong>Métodos comuns:</strong></p>
+        <ul>
+          <li>Senhas seguras</li>
+          <li>Biometria</li>
+          <li>Autenticação multifator (MFA)</li>
+        </ul>
+        <h3>5. Não Repúdio</h3>
+        <p>
+          <strong>Definição:</strong> Garante que uma entidade não possa negar
+          ter realizado uma ação.
+        </p>
+        <p>
+          <strong>Exemplo prático:</strong> Em uma transação bancária online, o
+          uso de assinaturas digitais impede que um cliente alegue que não
+          realizou determinada operação.
+        </p>
+        <p><strong>Métodos comuns:</strong></p>
+        <ul>
+          <li>Assinaturas digitais</li>
+          <li>Registros de log</li>
+          <li>Certificados digitais</li>
+        </ul>
+        <h2>Conclusão</h2>
+        <p>
+          Os cinco princípios da segurança da informação trabalham juntos para
+          proteger dados contra ameaças e acessos indevidos. Entender e aplicar
+          esses princípios no dia a dia, seja na vida pessoal ou profissional, é
+          essencial para manter a segurança digital.
+        </p>
+        <p>
+          <strong>Dica:</strong> Sempre utilize boas práticas de segurança, como
+          senhas fortes e autenticação multifator, para proteger suas
+          informações!
+        </p>
+      </div>
+
+      <div id="mapa" class="content">
+        <h2 class="titulo">Mapa Mental</h2>
+        <div class="zoom-container">
+          <img
+            id="mapaMentalImg"
+            src="/Princípios de Segurança da Informação (1).png"
+            alt="Mapa Mental sobre Segurança da Informação"
+          />
+        </div>
+      </div>
+
+    <script>
+      function showContent(mode) {
+        document.getElementById("completo").classList.remove("active");
+        document.getElementById("mapa").classList.remove("active");
+        document.getElementById(mode).classList.add("active");
+      }
+      var isZoomed = false;
+    var img = document.getElementById("mapaMentalImg");
+
+    img.addEventListener("click", function() {
+    var container = document.querySelector('.zoom-container');
+    isZoomed = !isZoomed;
+    if (isZoomed) {
+        container.classList.add('zoomed');
+    } else {
+        container.classList.remove('zoomed');
+    }
+    });
+
+    img.addEventListener("mousemove", function(e) {
+    if (isZoomed) {
+        var rect = img.getBoundingClientRect();
+        var offsetX = e.clientX - rect.left;
+        var offsetY = e.clientY - rect.top;
+        var percentX = offsetX / rect.width * 100;
+        var percentY = offsetY / rect.height * 100;
+        
+        img.style.transformOrigin = `${percentX}% ${percentY}%`;
+    }
+    });
+
+    img.addEventListener("mouseleave", function() {
+    if (isZoomed) {
+        img.style.transformOrigin = 'center center';
+    }
+    });
+    </script>
+  </body>
+</html>
